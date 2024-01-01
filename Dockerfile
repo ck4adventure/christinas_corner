@@ -3,7 +3,7 @@ FROM python:3.12.0-alpine
 
 # we want a workdir because this ends up in a file system
 # just like on a mac, but it's linux alpine
-WORKDIR /code
+# WORKDIR /code
 
 
 # copy and install requirements first to leverage caching
@@ -16,4 +16,5 @@ ENV DJANGO_DEBUG=False
 COPY . .
 EXPOSE 8000
 
-CMD gunicorn app.wsgi
+# CMD gunicorn app.wsgi
+CMD gunicorn -b 0.0.0.0:8000 --chdir /app app.wsgi
