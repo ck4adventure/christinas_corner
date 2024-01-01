@@ -17,4 +17,4 @@ COPY . .
 EXPOSE 8000
 
 # CMD gunicorn app.wsgi
-CMD gunicorn -b 0.0.0.0:8000 --chdir /app app.wsgi
+CMD gunicorn --chdir /app app.wsgi
