@@ -26,6 +26,7 @@ SECRET_KEY = 'django-insecure-#%ka6r)u%(bw-r4j8^nwr9xton$7ncfe+91uap9rk#ux14+#sn
 # Changing to recommended pattern from docs of env variables
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
+# server domain or ips
 ALLOWED_HOSTS = []
 
 
@@ -106,7 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Los_Angeles'
 
 USE_I18N = True
 
