@@ -16,4 +16,4 @@ ENV DJANGO_DEBUG=False
 COPY . .
 EXPOSE 8000
 
-CMD gunicorn christinas_corner.wsgi
+CMD gunicorn app.wsgi
