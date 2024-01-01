@@ -10,10 +10,10 @@ WORKDIR /code
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
-
+ENV DJANGO_DEBUG=False
 
 # copy the actual code
 COPY . .
 EXPOSE 8000
 
-CMD python /code/app/manage.py runserver 0.0.0.0:8000
+CMD gunicorn christinas_corner.wsgi
