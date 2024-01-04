@@ -1,1 +1,20 @@
-venv
+# Keep Rule
+!gitkeep.txt
+
+# Django #
+db.sqlite3
+*.log
+*.pyc
+__pycache__
+
+# Environments #
+.env
+venv/
+
+# Visual Studio and Visual Studio Code #
+*.suo
+*.pyproj
+*.pyproj.user
+*.history
+.vs/
+obj/

@@ -16,10 +16,13 @@ RUN pip install mod_wsgi
 COPY . .
 # RUN python /app/manage.py migrate
 
-EXPOSE 80
+EXPOSE 8000
 
 
 # CMD gunicorn app.wsgi
 # CMD gunicorn --chdir /app app.wsgi
-CMD mod_wsgi-express start-server wsgi.py --port=80 \
-    --user www-data --group www-data 
+CMD mod_wsgi start-server wsgi.py --port=8000 \
+    --user www-data --group www-data \
+    --log-to-terminal
+ 
+#   --server-root=/etc/mod_wsgi-express-80
