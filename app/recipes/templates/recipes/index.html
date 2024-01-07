@@ -1,3 +1,13 @@
+<h1>Recipes</h1>
+
+<h2>Main Ingredient Categories</h2>
+<ul>
+	{% for ingr in categories %}
+		<li><a href="{% url 'recipes:main_ingredient_detail' ingr %}">{{ ingr }}</a></li>
+	{% endfor %}
+</ul>
+
+<h2>Full List</h2>
 {% if recipe_list %}
     <ul>
     {% for recipe in recipe_list %}
@@ -8,11 +18,3 @@
     <p>No recipes are available.</p>
 {% endif %}
 
-<ul>
-	{% for k,v in recipe_dict.items %}
-		<h3>{{ k }}</h3>
-		{% for c in v %}
-			<li>{{ c }}</li>
-		{% endfor %}
-	{% endfor %}
-</ul>

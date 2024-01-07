@@ -1,0 +1,9 @@
+<h2>By Category</h2>
+<ul>
+	{% for cat,qs in category_dict.items %}
+		<h3>{{ cat }}</h3>
+		{% for recipe in qs %}
+			<li>{{ recipe }}</li>
+		{% endfor %}
+	{% endfor %}
+</ul>
