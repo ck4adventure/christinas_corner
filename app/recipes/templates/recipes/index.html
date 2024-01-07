@@ -1,0 +1,18 @@
+{% if recipe_list %}
+    <ul>
+    {% for recipe in recipe_list %}
+        <li><a href="{% url 'recipes:detail' recipe.id %}">{{ recipe.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No recipes are available.</p>
+{% endif %}
+
+<ul>
+	{% for k,v in recipe_dict.items %}
+		<h3>{{ k }}</h3>
+		{% for c in v %}
+			<li>{{ c }}</li>
+		{% endfor %}
+	{% endfor %}
+</ul>
