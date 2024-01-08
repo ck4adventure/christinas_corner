@@ -1,5 +1,5 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Recipe
+from django.shortcuts import render, get_object_or_404, get_list_or_404
+from .models import Recipe, RecipeIngredient, Category, Ingredient
 
 
 # Create your views here.
@@ -31,4 +31,11 @@ def category_detail(request, cat):
 
 def detail(request, recipe_id):
     recipe = get_object_or_404(Recipe, pk=recipe_id)
-    return render(request, "recipes/detail.html", {"recipe": recipe})
+    ingredients = get_list_or_404(RecipeIngredient, recipe=recipe_id)
+    main_ingredient = Recipe.MAIN_INGREDIENT_CHOICES[recipe.main_ingredient]
+    context = {
+		"recipe": recipe,
+		"main_ingredient": main_ingredient,
+		"ingredients": ingredients,
+	}
+    return render(request, "recipes/detail.html", context)

@@ -3,7 +3,7 @@
 <h2>Main Ingredient Categories</h2>
 <ul>
 	{% for ingr in categories %}
-		<li><a href="{% url 'recipes:main_ingredient_detail' ingr %}">{{ ingr }}</a></li>
+		<li><a href="{% url 'recipes:main_ingredient' ingr %}">{{ ingr }}</a></li>
 	{% endfor %}
 </ul>
 

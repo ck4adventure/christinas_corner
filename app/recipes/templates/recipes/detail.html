@@ -1,2 +1,9 @@
 <h1>{{ recipe.name }}</h1>
-<h3>{{ recipe.main_focus }}</h3>
+<h5>{{ main_ingredient }}</h5>
+<h3>Ingredients</h3>
+<ul>
+	{% for ingr in ingredients %}
+		<li>{{ ingr }}</li>
+	{% endfor %}
+</ul>
+<h3>Directions</h3>
