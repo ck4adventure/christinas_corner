@@ -1,4 +1,5 @@
 from django.db import models
+from orderable.models import Orderable
 
 class Category(models.Model):
     name = models.CharField(
@@ -10,7 +11,13 @@ class Category(models.Model):
         return self.name
     class Meta:
         verbose_name_plural = "categories"
-
+        
+class Ingredient(models.Model):
+	name = models.CharField(
+		max_length=100,
+	)
+	def __str__(self):
+		return self.name
 
 # Create your models here.
 class Recipe(models.Model):
@@ -45,3 +52,18 @@ class Recipe(models.Model):
 
 	def __str__(self):
 		return self.name
+
+
+class RecipeIngredient(models.Model):
+	recipe = models.ForeignKey(Recipe, on_delete=models.PROTECT)
+	quantity = models.DecimalField(
+        max_digits=6,
+        decimal_places=2,
+        help_text="Quantity is used in combination with measure and ingredient to form a recipe ingredient."
+        )
+	measure = models.CharField(
+		max_length=9,
+	)
+	ingredient = models.ForeignKey(Ingredient, on_delete=models.PROTECT)
+	def __str__(self):
+		return f"{self.quantity} {self.measure} {self.ingredient}"
