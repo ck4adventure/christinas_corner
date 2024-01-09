@@ -1,4 +1,4 @@
-.PHONY: reset clean makemigrations migrate createsuperuser
+.PHONY: reset clean makemigrations migrate createsuperuser run shell
 
 reset: clean makemigrations migrate createsuperuser
 
@@ -14,3 +14,9 @@ migrate:
 
 createsuperuser:
 		python app/manage.py createsuperuser
+
+run:
+		python app/manage.py runserver
+
+shell:
+		python app/manage.py shell

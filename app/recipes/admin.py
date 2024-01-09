@@ -1,25 +1,24 @@
 from django.contrib import admin
-from .models import Recipe, Category, Ingredient, RecipeIngredient
-# from orderable.admin import OrderableAdmin, OrderableTabularInline
+from .models import Recipe, Ingredient, RecipeIngredient, Step
+from orderable.admin import OrderableAdmin, OrderableTabularInline
+
+class StepsInline(OrderableTabularInline):
+    model = Step
+    extra = 1
+
 class IngredientsInline(admin.StackedInline):
 	model = RecipeIngredient
 	extra = 1
-
-class CategoriesInline(admin.TabularInline):
-    model = Recipe.categories.through
-    extra = 1
-    classes = ['collapse']
     
 class RecipeAdmin(admin.ModelAdmin):
     inlines = [
         IngredientsInline,
-		CategoriesInline
+        StepsInline,
 	]
-    exclude = ["categories", "ingredients"]
+    exclude = ["ingredients"]
     
 class IngredientAdmin(admin.ModelAdmin):
     pass
 
 admin.site.register(Recipe, RecipeAdmin)
-admin.site.register(Category)
 admin.site.register(Ingredient, IngredientAdmin)

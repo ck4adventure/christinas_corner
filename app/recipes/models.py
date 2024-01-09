@@ -1,17 +1,7 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator, MaxLengthValidator
-# from orderable.models import Orderable
+from orderable.models import Orderable
 
-class Category(models.Model):
-    name = models.CharField(
-		max_length=20,
-		unique=True,
-		help_text="Name of food category, must be unique."
-	)
-    def __str__(self):
-        return self.name
-    class Meta:
-        verbose_name_plural = "categories"
         
 class Ingredient(models.Model):
 	name = models.CharField(
@@ -29,22 +19,42 @@ class Ingredient(models.Model):
 	def __str__(self):
 		return self.name
 
-# class Step(models.Model):
-#     text = models.CharField(
-#         verbose_name = "Step",
-#         # db_comment = "Text for a single step in a set of directions",
-#         help_text = "Text for a single step within the recipe directions",
-#         max_length = 400,
-#         validators = []
-#     )
-#     # class Meta:
-#     #     ordering = ["ordinal"]
-#     #     # indexes = ["recipe"]
-#     def __str__(self):
-#         return self.text[:20]
 
-# Create your models here.
 class Recipe(models.Model):
+	BREAD = "BREAD"
+	BREAKFAST = "BREAKFAST"
+	CAKE = "CAKE"
+	COOKIES = "COOKIES"
+	CURRIES = "CURRIES"
+	FERMENTS = "FERMENTS"
+	MAIN = "MAIN"
+	NOODLES = "NOODLES"
+	PASTRY = "PASTRY"
+	PIES = "PIES"
+	RICE = "RICE"
+	SIDE = "SIDE"
+	SALAD = "SALAD"
+	SPICE = "SPICE"
+	TARTS = "TARTS"
+
+	CATEGORY_CHOICES = {
+		BREAD: "Bread",
+    	BREAKFAST: "Breakfast",
+    	CAKE: "Cakes",
+    	COOKIES: "Cookies",
+    	CURRIES: "Curries",
+    	FERMENTS: "Ferments",
+    	MAIN: "Main",
+    	NOODLES: "Noodles",
+    	PASTRY: "Pastry",
+    	PIES: "Pies",
+    	RICE: "Rice",
+    	SIDE: "Side",
+    	SALAD: "Salad",
+    	SPICE: "Spice Blend",
+    	TARTS: "Tarts",
+	}
+
 	BEEF = "BEEF"
 	CHICKEN = "CHICKEN"
 	PORK = "PORK"
@@ -61,9 +71,9 @@ class Recipe(models.Model):
         EGGS: "Eggs",
         VEGETABLE: "Vegetable",
         DAIRY: "Dairy",
-        GRAINS: "Grains",
+        GRAINS: "Grain",
         LEGUMES: "Legumes",
-        SUGAR: "Sugary Sweet"
+        SUGAR: "Sugar",
     }
 	
 	name = models.CharField(max_length=100)
@@ -72,7 +82,11 @@ class Recipe(models.Model):
 		choices=MAIN_INGREDIENT_CHOICES,
   		default=VEGETABLE
 	)
-	categories = models.ManyToManyField(Category)
+	category = models.CharField(
+		max_length=10,
+  		choices=CATEGORY_CHOICES,
+		default=BREAD,
+	)
 	# steps = models.ManyToManyField(Step)
 	def __str__(self):
 		return self.name
@@ -125,5 +139,16 @@ class RecipeIngredient(models.Model):
 	)
 	ingredient = models.ForeignKey(Ingredient, on_delete=models.PROTECT)
 	def __str__(self):
-		return f"{self.quantity} {self.measure} {self.ingredient}"
+		return f"{self.quantity} {self.MEASURING_UNIT_CHOICES[self.measure]} {self.ingredient}"
 
+class Step(Orderable):
+    text = models.CharField(
+        verbose_name = "Step",
+        # db_comment = "Text for a single step in a set of directions",
+        help_text = "Text for a single step within the recipe directions",
+        max_length = 400,
+        validators = []
+    )
+    recipe = models.ForeignKey(Recipe, on_delete=models.PROTECT)
+    def __str__(self):
+        return self.text[:20]

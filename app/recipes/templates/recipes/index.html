@@ -2,8 +2,15 @@
 
 <h2>Main Ingredient Categories</h2>
 <ul>
-	{% for ingr in categories %}
+	{% for ingr in ingr_list %}
 		<li><a href="{% url 'recipes:main_ingredient' ingr %}">{{ ingr }}</a></li>
+	{% endfor %}
+</ul>
+
+<h2>Food Type Categories</h2>
+<ul>
+	{% for cat in category_list %}
+		<li><a href="{% url 'recipes:category' cat %}">{{ cat }}</a></li>
 	{% endfor %}
 </ul>
 
