@@ -21,36 +21,46 @@ class Ingredient(models.Model):
 
 
 class Recipe(models.Model):
+	APPETIZERS = "APPETIZERS"
 	BREAD = "BREAD"
 	BREAKFAST = "BREAKFAST"
 	CAKE = "CAKE"
 	COOKIES = "COOKIES"
 	CURRIES = "CURRIES"
+	DRINKS = "DRINKS"
 	FERMENTS = "FERMENTS"
 	MAIN = "MAIN"
 	NOODLES = "NOODLES"
+	PANTRY = "PANTRY"
 	PASTRY = "PASTRY"
 	PIES = "PIES"
 	RICE = "RICE"
+	SANDWICHES = "SANDWICHES"
+	SAUCES = "SAUCES"
 	SIDE = "SIDE"
 	SALAD = "SALAD"
 	SPICE = "SPICE"
 	TARTS = "TARTS"
 
 	CATEGORY_CHOICES = {
+		APPETIZERS: "Appetizers",
 		BREAD: "Bread",
     	BREAKFAST: "Breakfast",
     	CAKE: "Cakes",
     	COOKIES: "Cookies",
     	CURRIES: "Curries",
+     	DRINKS: "Drinks",
     	FERMENTS: "Ferments",
     	MAIN: "Main",
     	NOODLES: "Noodles",
+		PANTRY: "Pantry",
     	PASTRY: "Pastry",
     	PIES: "Pies",
     	RICE: "Rice",
     	SIDE: "Side",
     	SALAD: "Salad",
+		SANDWICHES: "Sandwiches",
+     	SAUCES: "Sauces",
     	SPICE: "Spice Blend",
     	TARTS: "Tarts",
 	}
