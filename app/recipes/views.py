@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, get_list_or_404
+
 from .models import Recipe, RecipeIngredient, Ingredient, Step
-from .forms import AddRecipeForm
+from .forms import AddRecipeForm, IngredientFormset
 
 
 # Create your views here.
@@ -47,11 +48,11 @@ def add_recipe(request):
 
     # if a GET (or any other method) we'll create a blank form
     else:
-        form = AddRecipeForm()
+        recipe_form = AddRecipeForm()
 
     context = {
-        "form": form,
-        "me": "me",
+        "form": recipe_form,
+        "ingredient_formset": IngredientFormset,
     }
 
     return render(request, "recipes/add.html", context)
